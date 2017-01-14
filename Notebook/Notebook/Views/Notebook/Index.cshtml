@@ -1,0 +1,94 @@
+﻿@model Notebook.Models.PeopleViewModel
+
+@using PagedList.Mvc;
+@using Notebook.Infrastructure;
+
+@{
+    ViewBag.Title = "Записная книжка";
+}
+<div class="row">
+    @using (Html.BeginForm("Index", "Notebook", FormMethod.Get))
+    {
+        <div class="col-sm-5 col-sm-offset-4 search">
+            @Html.TextBox("searchCritery", Model.CurrentFilter as string, new { @class = "search-tb", placeholder = "Введите для поиска" })
+            <button class="search-icon fa fa-search" type="submit"></button>
+        </div>
+    }
+</div>
+
+<div class="row contact-table">
+    <div class="col-sm-12">
+
+        <div class="panel">
+            <div class="panel-default">
+                <table class="table table-bordered">
+                    <thead>
+                        Контакты
+                        <i class="fa fa-caret-down"></i>
+                        @Model.ContactList.Count() Всего
+
+                        <a href="@Url.Action("AddContact","Notebook")" class="btn btn-primary pull-right" style="background-color:#bf5102;color:#fff;border:none;">
+                            <i class="fa fa-lg fa-user-plus"></i>
+                            Добавить контакт
+                        </a>
+                        <tr>
+                            <th>
+                                @Html.ActionLink("Фамилия", "Index", new { sortCritery = Model.SurnameSort, currentFilter = Model.CurrentFilter })
+                            </th>
+                            <th>Имя</th>
+                            <th>
+                                @Html.ActionLink("Дата рождения", "Index", new { sortCritery = Model.DateBirthSort, currentFilter = Model.CurrentFilter })
+                            </th>
+                            <th>Номер телефона</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(Model.ContactList.Count() == 0)
+                        {
+                            <tr><td colspan="5" class="text-center">Контакты отсутствуют.</td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.ContactPagedList)
+                            {
+                                <tr>
+                                    <td> @item.Surname </td>
+                                    <td> @item.Name </td>
+                                    <td> @DateService.ReplaceDate(@item.DateBirthday) </td>
+                                    <td> @item.PhoneNumber </td>
+                                    <td> @Html.ActionLink(" ", "DeleteContact", "Notebook", new { Id = @item.Id }, new { @class = "glyphicon glyphicon-remove", style = "color:#bf5102;" }) </td>
+                                </tr>
+                            }
+                        }    
+                    </tbody>
+                </table>
+                <br />
+                Страница @(Model.ContactPagedList.PageCount < Model.ContactPagedList.PageNumber ? 0 : Model.ContactPagedList.PageNumber) из @Model.ContactPagedList.PageCount
+                @Html.PagedListPager(Model.ContactPagedList, page => Url.Action("Index",
+    new { page, sortCritery = Model.CurrentSort, currentFilter = Model.CurrentFilter }))
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@*script was placed here because call occurs only on page Index *@
+
+@section SeriliazeFile
+{
+    <script>
+        window.onbeforeunload = CloseTab()
+
+        function CloseTab() {
+            $.ajax({
+                type: "POST",
+                url: "/Notebook/Save",
+                data: null,
+                success: function (result) { },
+                error: function (req, status, error) { }
+            });
+        }
+    </script>
+}

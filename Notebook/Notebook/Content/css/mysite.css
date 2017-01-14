@@ -1,0 +1,89 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+
+a:hover{
+    text-decoration:none;
+}
+
+.search {
+    margin-top:50px;
+}
+
+.search-icon{
+    color:#bf5102;
+    font-size:1.5em;
+    border:0;
+    background:none;
+}
+
+.search-tb{
+    border-radius:5px 5px 5px  5px;
+    border:solid 1px#817171;
+    width:400px;
+    height:35px;
+}
+
+.header-bg{
+    background-color:#817171;
+}
+.header-bg a{
+    color:#fff;
+}
+
+.title-center{
+    margin-top:25px;
+    font-family:Cambria;
+    font-size:1.5em;
+    font-weight:600;
+    color:#817171;
+}
+
+
+.contact-table{
+    padding:15px;
+    margin-top:-5px;
+    border:#000;
+}
+
+.contact-table a,th{
+    color:#817171;
+}
+
+.contact-table th{
+    background-color:#ebebeb;
+}
+
+.pagination > li{
+    background-color:#bf5102;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+    font-weight:bold;
+}
+ 
+.field-validation-valid {
+    display: none;
+}
+ 
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+ 
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+ 
+.validation-summary-valid {
+    display: none;
+}
+
+.vertical-offset-100{
+    padding-top:100px;
+}

@@ -1,0 +1,87 @@
+﻿@model  Notebook.Models.PeopleViewModel
+
+
+
+@{
+    ViewBag.Title = "Добавление контакта";
+}
+
+
+@using (Html.BeginForm("AddContact","Notebook"))
+{
+    @Html.AntiForgeryToken();
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4>
+                <i class="fa fa-user text-primary" style="color:#bf5102;"></i>
+                Добавить контакт
+            </h4>
+        </div>
+
+        <div class="panel-body">
+
+            <div class="form-group">
+                
+                    <h4>Заполните поля</h4>
+                
+            </div>
+
+            <div class="row form-group" style="margin-top:30px;">
+                <div class="col-sm-3">
+                    @Html.LabelFor(x => x.Surname)
+                    @Html.TextBoxFor(x => x.Surname, new { @class = "required form-control", placeholder = "Введите фамилию" })
+                    @Html.ValidationMessageFor(x => x.Surname)
+                </div>
+            </div>
+
+            <div class="row form-group" style="margin-top:30px;">
+                <div class="col-sm-3">
+                    @Html.LabelFor(x => x.Name)
+                    @Html.TextBoxFor(x => x.Name, new { @class = "required form-control", placeholder = "Введите имя" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+            </div>
+
+            <div class="row form-group" style="margin-top:30px;">
+                <div class="col-sm-3">
+                    @Html.LabelFor(x => x.DateBirthday)
+                    @Html.TextBoxFor(x => x.DateBirthday, new { @class = "required form-control", placeholder = "Введите дату рождения", @id = "dateBirth" })
+                    @Html.ValidationMessageFor(x => x.DateBirthday)
+                </div>
+            </div>
+
+            <div class="row form-group" style="margin-top:30px;">
+                <div class="col-sm-3">
+                    @Html.LabelFor(x => x.PhoneNumber)
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "required form-control", placeholder = "Введите номер телефона" })
+                    @Html.ValidationMessageFor(x => x.PhoneNumber)
+                </div>
+            </div>
+
+            <div class="row form-group" style="margin-top:30px;">
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-default">Сохранить</button>
+                    @Html.ActionLink("Отменить", "Index", "Notebook", new { @class = "btn btn-default" })
+                </div>
+            </div>
+                
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/inputmask")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/bundles/jqueryval")
+
+<script src="~/scripts/jquery-3.1.1.js"></script>
+<script src="~/scripts/jquery.inputmask/inputmask.min.js"></script>
+
+<script type="text/javascript">
+$(function () {
+    $("#dateBirth").mask("(000) ");
+});
+</script>
