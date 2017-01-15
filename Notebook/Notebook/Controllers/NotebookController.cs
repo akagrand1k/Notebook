@@ -28,7 +28,6 @@ namespace Notebook.Controllers
 
             if (!String.IsNullOrEmpty(searchCritery))
             model.ContactList = navService.Search(searchCritery);
-
             switch (sortCritery)
             {
                 case "surname_desc": model.ContactList = model.ContactList.OrderByDescending(s => s.Surname);

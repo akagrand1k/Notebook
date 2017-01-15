@@ -1,7 +1,5 @@
 ﻿@model  Notebook.Models.PeopleViewModel
 
-
-
 @{
     ViewBag.Title = "Добавление контакта";
 }
@@ -48,7 +46,7 @@
             <div class="row form-group" style="margin-top:30px;">
                 <div class="col-sm-3">
                     @Html.LabelFor(x => x.DateBirthday)
-                    @Html.TextBoxFor(x => x.DateBirthday, new { @class = "required form-control", placeholder = "Введите дату рождения", @id = "dateBirth" })
+                    @Html.TextBoxFor(x => x.DateBirthday, new { @class = "required form-control", placeholder = "10102000", id = "dateBirth" })
                     @Html.ValidationMessageFor(x => x.DateBirthday)
                 </div>
             </div>
@@ -71,17 +69,3 @@
         </div>
     </div>
 }
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/inputmask")
-@Scripts.Render("~/bundles/jqueryui")
-@Scripts.Render("~/bundles/jqueryval")
-
-<script src="~/scripts/jquery-3.1.1.js"></script>
-<script src="~/scripts/jquery.inputmask/inputmask.min.js"></script>
-
-<script type="text/javascript">
-$(function () {
-    $("#dateBirth").mask("(000) ");
-});
-</script>

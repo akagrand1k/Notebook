@@ -22,7 +22,7 @@ namespace Notebook.BL.Service
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="o"></param>
-        public void Serializer<T>(T o)
+        public void Serializer<T>(T o) where T: class,new ()
         {
             BinaryFormatter binSer = new BinaryFormatter();
             using (var fs = new FileStream(relPath, FileMode.OpenOrCreate))
@@ -36,7 +36,7 @@ namespace Notebook.BL.Service
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T Deserializer<T>()
+        public T Deserializer<T>() where T : class, new()
         {
             BinaryFormatter binSer = new BinaryFormatter();
             using (var fs = new FileStream(relPath, FileMode.OpenOrCreate))

@@ -13,13 +13,15 @@ namespace Notebook.BL.Service
         /// </summary>
         /// <typeparam name="T">Generic type params</typeparam>
         /// <param name="o">Deserialize object</param>
-        void Serializer<T>(T o);
+        void Serializer<T>(T o)
+            where T: class, new();
 
         /// <summary>
         /// Deserialization file
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="o">Deserialize object</param>
-        T Deserializer<T>();
+        T Deserializer<T>()
+            where T: class,new ();
     }
 }
